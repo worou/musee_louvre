@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,12 +14,50 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="Pays", mappedBy="Billet")
      */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param mixed $pays
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+    }
+
+    public function _construct()
+    {
+        $this->pays     = new ArrayCollection();
+        $this->commande = new ArrayCollection();
+    }
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="billet")
+     */
+    private $commande;
+
+    /**
+     * @return mixed
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * @param mixed $commande
+     */
+    public function setCommande($commande)
+    {
+        $this->commande = $commande;
+    }
+
+
     private $id;
 
     /**

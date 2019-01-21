@@ -13,12 +13,29 @@ use Doctrine\ORM\Mapping as ORM;
 class Commande
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToOne(targetEntity="Billet", inversedBy="commande")
+     * @ORM\JoinColumn(name="billet_id", referencedColumnName="id")
      */
+
+    private $billet;
+
+    /**
+     * @return mixed
+     */
+    public function getBillet()
+    {
+        return $this->billet;
+    }
+
+    /**
+     * @param mixed $billet
+     */
+    public function setBillet($billet)
+    {
+        $this->billet = $billet;
+    }
+
+
     private $id;
 
     /**
