@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Commande
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Billet", inversedBy="commande")
-     * @ORM\JoinColumn(name="billet_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Commande")
+     * @ORM\JoinColumn(nullable=false)
      */
 
     private $billet;

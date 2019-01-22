@@ -14,7 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
     /**
-     * @ORM\OneToMany(targetEntity="Billet", mappedBy="Pays")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pays")
+     * @ORM\JoinColumn(nullable=false)
      */
     public function getPays()
     {
@@ -28,16 +29,12 @@ class Billet
     {
         $this->pays = $pays;
     }
-
-    public function _construct()
-    {
-        $this->pays     = new ArrayCollection();
-        $this->commande = new ArrayCollection();
-    }
+    
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Billet", mappedBy="commande")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
 
