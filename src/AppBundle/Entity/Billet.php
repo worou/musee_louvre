@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
     /**
-     * @ORM\OneToMany(targetEntity="Pays", mappedBy="Billet")
+     * @ORM\OneToMany(targetEntity="Billet", mappedBy="Pays")
      */
     public function getPays()
     {
@@ -37,7 +37,7 @@ class Billet
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Commande", mappedBy="billet")
+     * @ORM\OneToMany(targetEntity="Billet", mappedBy="commande")
      */
     private $commande;
 
