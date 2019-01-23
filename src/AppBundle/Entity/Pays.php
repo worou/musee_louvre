@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Pays
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Billet", inversedBy="pays")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pays")
      * @ORM\JoinColumn(name="billet_id", referencedColumnName="id")
      */
 

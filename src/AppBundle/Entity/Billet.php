@@ -14,45 +14,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pays")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pays, inverse by billets")
      * @ORM\JoinColumn(nullable=false)
      */
-    public function getPays()
-    {
-        return $this->pays;
-    }
 
-    /**
-     * @param mixed $pays
-     */
-    public function setPays($pays)
-    {
-        $this->pays = $pays;
-    }
-    
-
+    private $pays;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
-
-    /**
-     * @return mixed
-     */
-    public function getCommande()
-    {
-        return $this->commande;
-    }
-
-    /**
-     * @param mixed $commande
-     */
-    public function setCommande($commande)
-    {
-        $this->commande = $commande;
-    }
 
 
     private $id;
@@ -191,5 +163,37 @@ class Billet
     {
         return $this->tarifReduit;
     }
-}
 
+    /**
+     * @return mixed
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param mixed $pays
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * @param mixed $commande
+     */
+    public function setCommande($commande)
+    {
+        $this->commande = $commande;
+    }
+
+}

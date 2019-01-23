@@ -13,28 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Commande
 {
     /**
-     * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Commande")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Billet", mappedBy="commande")
      */
 
-    private $billet;
 
-    /**
-     * @return mixed
-     */
-    public function getBillet()
-    {
-        return $this->billet;
-    }
-
-    /**
-     * @param mixed $billet
-     */
-    public function setBillet($billet)
-    {
-        $this->billet = $billet;
-    }
-
+    private $billets;
 
     private $id;
 
@@ -110,5 +93,47 @@ class Commande
     {
         return $this->dateDeVisite;
     }
-}
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->billets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add billet
+     *
+     * @param \OC\PlatformBundle\Entity\Billet $billet
+     *
+     * @return Commande
+     */
+    public function addBillet(\OC\PlatformBundle\Entity\Billet $billet)
+    {
+        $this->billets[] = $billet;
+
+        return $this;
+    }
+
+    /**
+     * Remove billet
+     *
+     * @param \OC\PlatformBundle\Entity\Billet $billet
+     */
+    public function removeBillet(\OC\PlatformBundle\Entity\Billet $billet)
+    {
+        $this->billets->removeElement($billet);
+    }
+
+    /**
+     * Get billets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBillets()
+    {
+        return $this->billets;
+    }
+}
